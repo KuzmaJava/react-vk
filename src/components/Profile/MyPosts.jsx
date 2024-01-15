@@ -11,10 +11,9 @@ const MyPosts = () => {
             <button>Remove</button>
         </div>
         <div className={styles.posts}>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+            <Post message="I am going to the sea"/>
+            <Post message="I've bought the car"/>
+            <Post message="That's my first post"/>
         </div>
     </div>
 }
