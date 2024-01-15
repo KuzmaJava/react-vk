@@ -6,17 +6,23 @@ import MyPosts from "./components/Profile/MyPosts";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import styles from "./components/Dialogs/Dialogs.module.css";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-const App = () => {
+const App = (props) => {
     return (
-        <div className='app-wrapper'>
-            <Header/>
-            <Navbar/>
-            <div className='app-wrapper-content'>
-                <Dialogs/>
+        <BrowserRouter>
+            <div className='app-wrapper'>
+                <Header/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                    <Routes>
+                        <Route path='/dialogs' element={<Dialogs />} />
+                        <Route path='/profile' element={<Profile />} />
+                    </Routes>
+                </div>
+                {/*<Profile/>*/}
             </div>
-            {/*<Profile/>*/}
-        </div>
+        </BrowserRouter>
     );
 }
 export default App;
