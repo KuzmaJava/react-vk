@@ -7,7 +7,7 @@ const Post = (props) => {
             <img src='https://discoverymood.com/wp-content/uploads/2020/04/Mental-Strong-Women-min.jpg'/>
             {props.message}
             <div>
-                <span>like</span>
+                <span>likes {props.likesCount}</span>
             </div>
         </div>
     )
