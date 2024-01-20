@@ -3,12 +3,13 @@ import styles from './MyPosts.module.css';
 import Post from "./MyPosts/Post/Post";
 
 const MyPosts = () => {
-    return <div>
-        My posts
+    return <div className={styles.postsBlock}>
+        <h3>My posts</h3>
         <div>
-            <textarea>Write</textarea>
-            <button>Button</button>
-            <button>Remove</button>
+            <textarea></textarea>
+        </div>
+        <div>
+            <button>Add post</button>
         </div>
         <div className={styles.posts}>
             <Post message="I am going to the sea"/>

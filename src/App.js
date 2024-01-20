@@ -20,7 +20,7 @@ const App = (props) => {
                         <Route path='/profile' element={<Profile />} />
                     </Routes>
                 </div>
-                {/*<Profile/>*/}
+                {/*<ProfileInfo/>*/}
             </div>
         </BrowserRouter>
     );
