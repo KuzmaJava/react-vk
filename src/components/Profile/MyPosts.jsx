@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './MyPosts.module.css';
 import Post from "./MyPosts/Post/Post";
+import {rerenderEntireTree} from "../../render";
 
 const MyPosts = (props) => {
 
@@ -11,7 +12,8 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         let text = newPostElement.current.value;
-        alert(text);
+        props.addPost(text);
+        newPostElement.current.value = '';
     }
 
     return <div className={styles.postsBlock}>
