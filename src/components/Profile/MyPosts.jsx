@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './MyPosts.module.css';
 import Post from "./MyPosts/Post/Post";
-import {rerenderEntireTree} from "../../render";
 
 const MyPosts = (props) => {
 
@@ -11,15 +10,19 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
+        props.addPost();
+    }
+
+    let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = '';
+        props.updateNewPostText(text);
     }
 
     return <div className={styles.postsBlock}>
         <h3>My posts</h3>
         <div>
-            <textarea ref={newPostElement}></textarea>
+            <textarea onChange={onPostChange} ref={newPostElement}
+                      value={props.newPostText}></textarea>
         </div>
         <div>
             <button onClick={addPost}>Add post</button>
