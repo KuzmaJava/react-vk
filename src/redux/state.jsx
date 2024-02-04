@@ -9,7 +9,7 @@ let store = {
             ],
             newPostText: 'base text'
         },
-        messagesPage: {
+        dialogsPage: {
             dialogs: [
                 {id: 1, name: 'Jackson'},
                 {id: 2, name: 'Maria'},
@@ -22,12 +22,17 @@ let store = {
             ],
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber () {
         console.log('State has been changed.')
     },
+
+    getState() {
+        return this._state;
+    },
+    subscribe (observer) {
+        this._callSubscriber = observer;
+    },
+
     addPost () {
         let newPost = {
             id: 23,
@@ -42,8 +47,20 @@ let store = {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
-    subscribe (observer) {
-        this._callSubscriber = observer;
+    dispatch (action) {
+        if (action.type === 'ADD_POST') {
+            let newPost = {
+                id: 23,
+                message: this._state.profilePage.newPostText,
+                likesCount: 4
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
