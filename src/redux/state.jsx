@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+
 let store = {
     // '_' - means private, no access from the outside
     _state: {
@@ -33,20 +36,6 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    addPost () {
-        let newPost = {
-            id: 23,
-            message: this._state.profilePage.newPostText,
-            likesCount: 4
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText (newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
     dispatch (action) {
         if (action.type === 'ADD_POST') {
             let newPost = {
@@ -63,6 +52,10 @@ let store = {
         }
     }
 }
+
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const updateNewPostTextActionCreator = (text) =>
+    ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
 export default store;
 window.store = store;
