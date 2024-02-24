@@ -4,38 +4,7 @@ const SET_USERS = 'SET_USERS';
 
 
 let initialState = {
-    users: [
-        {
-            id: 1,
-            photoUrl: 'https://cdn5.vedomosti.ru/image/2023/9f/ysgcr/original-1936.jpg',
-            isFollowed: true,
-            fullName: 'Yulia Snigir',
-            status: 'Master and Margarita 2024',
-            location: {
-                city: 'Donskoy', country: 'Russia'
-            },
-        },
-        {
-            id: 2,
-            photoUrl: 'https://www.mk.ru/upload/entities/2021/04/29/12/photoreportsImages/detailPicture/10/3d/a5/56/8765935_8099904.jpg',
-            isFollowed: false,
-            fullName: 'Ekaterina Klimova',
-            status: 'At home',
-            location: {
-                city: 'Moscow', country: 'Russia'
-            },
-        },
-        {
-            id: 3,
-            photoUrl: 'https://n1s1.hsmedia.ru/62/ea/bb/62eabbedb0f55b054a05ef05cc4d8423/728x542_1_925471840e84ba9b9cb966fa05af7eb3@1000x745_0xac120003_5043048631562644928.jpg',
-            isFollowed: true,
-            fullName: 'Angelina Jolie',
-            status: 'Hollywood',
-            location: {
-                city: 'Los Angeles', country: 'USA'
-            },
-        }
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -63,7 +32,7 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_USERS:
             return {
-                ...state, users: [...state.users, action.users]
+                ...state, users: action.users
             };
         default:
             return state;
