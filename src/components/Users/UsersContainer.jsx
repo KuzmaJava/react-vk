@@ -10,7 +10,6 @@ import {
 import React from "react";
 import axios from "axios";
 import Users from "./Users";
-import preLoader from '../../resources/images/pre_loader.gif'
 import Preloader from "../common/Preloader/Preloader";
 
 class UsersContainer extends React.Component {
