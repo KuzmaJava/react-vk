@@ -1,28 +1,32 @@
-import React from 'react'
-import Profile from "./Profile";
-import axios from "axios";
-import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profile-reducer";
+import React, { useEffect } from 'react';
+import Profile from './Profile';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { setUserProfile } from '../../redux/profile-reducer';
+import { useParams } from 'react-router-dom';
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-            .then(response => {
-                this.props.setUserProfile(response.data);
-            });
-    }
+const ProfileContainer = ({ setUserProfile, profile }) => {
+    const { userId } = useParams();
 
-    render() {
-        return (
-            <Profile {...this.props} profile={this.props.profile}/>
-        )
-    }
-}
+    useEffect(() => {
+        if (userId) {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+                .then(response => {
+                    setUserProfile(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching profile:', error);
+                });
+        }
+    }, [userId, setUserProfile]);
 
-let mapStateToProps = (state) => ({
+    return (
+        <Profile profile={profile} />
+    );
+};
+
+const mapStateToProps = (state) => ({
     profile: state.profilePage.profile
-})
+});
 
-export default connect(mapStateToProps, {
-    setUserProfile
-})(ProfileContainer);
+export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);
