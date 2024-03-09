@@ -18,6 +18,7 @@ const usersReducer = (state = initialState, action) => {
     console.log(action);
     switch (action.type) {
         case FOLLOW:
+            debugger
             return {
                 ...state,
                 users: state.users.map(user => {
