@@ -19,23 +19,12 @@ export const usersAPI = {
             })
     },
 
-    // followUser(user) {
-    //     debugger
-    //     return instance.post(`follow/${user.id}`)
-    //         .then(response => {
-    //             if (response.data.resultCode === 0) {
-    //                 follow(user.id);
-    //             }
-    //         })
-    // },
-    //
-    // unfollowUser(user) {
-    //     return instance.delete(`follow/${user.id}`)
-    //         .then(response => {
-    //             if (response.data.resultCode === 0) {
-    //                 unfollow(user.id);
-    //             }
-    //         })
-    // }
+    followUser(user) {
+        return instance.post(`follow/${user.id}`)
+    },
+
+    unfollowUser(user) {
+        return instance.delete(`follow/${user.id}`)
+    }
 }
 
