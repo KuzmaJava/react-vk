@@ -1,7 +1,7 @@
 import styles from "./Users.module.css";
 import defaultUser from "../../resources/images/default_user.png";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import axios from "axios";
 
 let Users = (props) => {
