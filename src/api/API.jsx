@@ -1,7 +1,4 @@
 import axios from "axios";
-import {follow, unfollow} from "../redux/users-reducer";
-
-const BASE_PATH = "https://social-network.samuraijs.com/api/1.0/";
 
 const instance = axios.create({
     withCredentials: true,
@@ -25,6 +22,16 @@ export const usersAPI = {
 
     unfollowUser(user) {
         return instance.delete(`follow/${user.id}`)
+    },
+
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`);
+    }
+}
+
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`)
     }
 }
 
