@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import {getUserProfile} from '../../redux/profile-reducer';
 import {useParams} from 'react-router-dom';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
-const ProfileContainer = ({ getUserProfile, profile, isAuth }) => {
-    const { userId } = useParams();
+const ProfileContainer = ({getUserProfile, profile, isAuth}) => {
+    const {userId} = useParams();
 
     useEffect(() => {
         if (userId) {
@@ -15,14 +16,15 @@ const ProfileContainer = ({ getUserProfile, profile, isAuth }) => {
     }, [userId, getUserProfile]);
 
     return (
-        <Profile profile={profile} isAuth={isAuth} />
+        <Profile profile={profile} isAuth={isAuth}/>
     );
 };
-
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 });
 
-export default connect(mapStateToProps, { getUserProfile })(AuthRedirectComponent);
+export default compose(
+    connect(mapStateToProps, {getUserProfile}),
+    withAuthRedirect
+)(ProfileContainer);
