@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import defaultUserImage from "../../../resources/images/defaultImage.jpg";
-import ProfileStatus from "./ProfileStatus"
+import ProfileStatusFuncComponent from "./ProfileStatusFuncComponent";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
                     ) : (
                         <img src={profileImage}/>
                     )}
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                    <ProfileStatusFuncComponent status={props.status} updateUserStatus={props.updateUserStatus}/>
                     ava + description
                 </div>
             </div>
