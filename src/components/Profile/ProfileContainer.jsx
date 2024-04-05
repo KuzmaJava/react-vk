@@ -10,9 +10,7 @@ const ProfileContainer = ({ getUserProfile, profile, isAuth, status, getUserStat
     const [redirect, setRedirect] = useState(false); // State for redirecting
 
     useEffect(() => {
-        debugger;
         if (userId) {
-            console.log('userId', userId);
             getUserProfile(userId);
             getUserStatus(userId);
         } else {
