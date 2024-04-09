@@ -4,11 +4,11 @@ import Preloader from "../../common/Preloader/Preloader";
 import defaultUserImage from "../../../resources/images/defaultImage.jpg";
 import ProfileStatusFuncComponent from "./ProfileStatusFuncComponent";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {
+    if (!profile) {
         return <Preloader/>
     } else {
-        const profileImage = props.profile.photos.large;
+        const profileImage = profile.photos.large;
         return (
             <div>
                 <div className={styles.descriptionBlock}>
@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
                     ) : (
                         <img src={profileImage}/>
                     )}
-                    <ProfileStatusFuncComponent status={props.status} updateUserStatus={props.updateUserStatus}/>
+                    <ProfileStatusFuncComponent status={status} updateUserStatus={updateUserStatus}/>
                     ava + description
                 </div>
             </div>
