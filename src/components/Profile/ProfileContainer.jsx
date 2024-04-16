@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { getUserProfile, getUserStatus, updateUserStatus } from '../../redux/profile-reducer';
+import {getUserProfile, getUserStatus, savePhoto, updateUserStatus} from '../../redux/profile-reducer';
 import { Navigate, useParams } from 'react-router-dom';
 import { compose } from "redux";
 
-const ProfileContainer = ({ getUserProfile, profile, isAuth, status, getUserStatus, updateUserStatus, authorizedUserId }) => {
+const ProfileContainer = ({ getUserProfile, profile, isAuth, status, getUserStatus, updateUserStatus, authorizedUserId, savePhoto }) => {
     const { userId } = useParams();
     const [redirect, setRedirect] = useState(false); // State for redirecting
 
@@ -28,7 +28,12 @@ const ProfileContainer = ({ getUserProfile, profile, isAuth, status, getUserStat
     }
 
     return (
-        <Profile profile={profile} isAuth={isAuth} status={status} updateUserStatus={updateUserStatus} />
+        <Profile profile={profile}
+                 isAuth={isAuth}
+                 status={status}
+                 updateUserStatus={updateUserStatus}
+                 isOwner={!userId}
+                 savePhoto={savePhoto}/>
     );
 };
 
@@ -42,5 +47,5 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus })
+    connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, savePhoto })
 )(ProfileContainer);
